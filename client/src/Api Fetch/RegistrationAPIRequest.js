@@ -4,7 +4,8 @@ import store from "../redux/store/store.js";
 import {HideLoader, ShowLoader} from "../redux/state-slice/settings-slice.js";
 
 
-const BaseUrl = "http://localhost:5050/api";
+// const BaseUrl = "http://localhost:5050/api";
+const BaseUrl = "https://task-manager-rest-api-nine.vercel.app/api";
 
 
 export const RegistrationApiRequest = (fullName, email, phone, password, photo) => {

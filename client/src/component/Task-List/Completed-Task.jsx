@@ -8,8 +8,6 @@ import {UpdateStatusAlert} from "../../helper/UpdateAlert.js";
 const CompletedTask = () => {
   const CompletedList = useSelector((state) => state.task.Completed)
 
-  console.log(CompletedList)
-
   useEffect(() => {
     (async () => {
       await TaskListByStatusRequest("Completed")

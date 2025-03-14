@@ -9,7 +9,10 @@ import {SetProfile} from "../redux/state-slice/profile-slice.js";
 import {unAuthorized} from "../helper/FormHelper.js";
 
 
-const BaseUrl = "http://localhost:5050/api";
+// const BaseUrl = "http://localhost:5050/api";
+const BaseUrl = "https://task-manager-rest-api-nine.vercel.app/api";
+
+
 const axiosHeaders = {headers: {"token": getToken()}};
 
 
