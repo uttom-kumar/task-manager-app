@@ -1,6 +1,7 @@
 
 
-let EmailRegx = /^\w+@\w+\.\w+$/;
+// let EmailRegx = /^\w+@\w+\.\w+$/;
+let EmailRegx = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
 let MobileRegx = /^(?:\+88|0088)?01[3-9]\d{8}$/;
 let PasswordRegx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
