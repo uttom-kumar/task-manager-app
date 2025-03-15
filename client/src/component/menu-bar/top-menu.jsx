@@ -6,12 +6,15 @@ import {getUserDetails, removeSession} from "../../helper/CookieHelper.js";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {MdOutlineVerified} from "react-icons/md";
+import SideBarModal from "../modal/SideBar-Modal.jsx";
+import SideMenu from "./side-menu.jsx";
 
 
 const TopMenu = () => {
   const ProfileData = useSelector((state) => state.profile.value)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const [showModal, setShowModal] = useState(false)
 
   const DropDownHandler = () => {
     setDropdownOpen(!dropdownOpen);
@@ -40,6 +43,7 @@ const TopMenu = () => {
     })
   }
 
+
   useEffect(() => {
     (async () => {
       await ProfileDetailRequest()
@@ -53,7 +57,7 @@ const TopMenu = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-5">
             <div className="block md:hidden">
-              <button className="cursor-pointer">
+              <button onClick={() => setShowModal(!showModal)} className="cursor-pointer text-[24px]">
                 <AiOutlineMenuUnfold />
               </button>
             </div>
@@ -99,6 +103,13 @@ const TopMenu = () => {
             )}
           </div>
         </div>
+      </div>
+      <div>
+        <SideBarModal isVisible={showModal} onClose={() => setShowModal(false)}>
+          <div className={`w-[250px] sm:w-[400px] h-full bg-white py-5 `}>
+            <SideMenu />
+          </div>
+        </SideBarModal>
       </div>
     </>
   );

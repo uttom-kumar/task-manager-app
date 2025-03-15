@@ -5,7 +5,7 @@ import TopMenu from "../menu-bar/top-menu.jsx";
 const MasterLayout = ({children}) => {
   return (
     <div>
-      <div className="sticky top-0">
+      <div className="sticky top-0 z-[99999999]">
         <TopMenu />
       </div>
       <div className="flex">
