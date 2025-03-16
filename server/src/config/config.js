@@ -14,5 +14,5 @@ export const WEB_CACHE = false
 export const WEB_JSON_SIZE = "100MB"
 export const URL_ENCODE = true
 
-export const REQUEST_TIME = 20*60*1000
-export const REQUEST_NUMBER = 2000
+export const REQUEST_TIME = 15*60*1000
+export const REQUEST_NUMBER = 150
