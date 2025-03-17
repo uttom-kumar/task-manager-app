@@ -18,6 +18,7 @@ import mongoose from 'mongoose'
 import router from './src/routes/api.js'
 import cookieParser from 'cookie-parser'
 
+
 /* ---- ---- */
 // ✅ SECURITY MIDDLEWARE IMPLEMENTATION
 app.use(bodyParser.json())
