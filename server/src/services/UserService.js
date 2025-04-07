@@ -82,6 +82,10 @@ export const VerifyEmailService = async (req) => {
             { $set: { isVerified: true, otp: null } }
         );
 
+        return {
+            status : "success",
+            message : "Verification successfully!"
+        }
     }
     catch (err) {
         return {

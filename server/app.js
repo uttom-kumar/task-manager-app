@@ -32,7 +32,7 @@ app.use(helmet())
 
 // ✅ CORS Policy Set
 app.use(cors({
-  origin: 'https://task-manager-app-dusky-six.vercel.app',
+  origin: ['https://task-manager-app-dusky-six.vercel.app', 'http://localhost:5173'],
   credentials: true
 }));
 

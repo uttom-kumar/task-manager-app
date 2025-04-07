@@ -4,8 +4,8 @@ import store from "../redux/store/store.js";
 import {HideLoader, ShowLoader} from "../redux/state-slice/settings-slice.js";
 
 
-// const BaseUrl = "http://localhost:5050/api";
-const BaseUrl = "https://task-manager-rest-api-nine.vercel.app/api";
+const BaseUrl = "http://localhost:5050/api";
+// const BaseUrl = "https://task-manager-rest-api-nine.vercel.app/api";
 
 
 export const RegistrationApiRequest = (fullName, email, phone, password, photo) => {
@@ -37,7 +37,7 @@ export const RegistrationApiRequest = (fullName, email, phone, password, photo) 
 
 
 export const VerifyEmailRequest = (email, otp) => {
-  let URL = `${BaseUrl}/${email}/${otp}`;
+  let URL = `${BaseUrl}/VerifyEmail/${email}/${otp}`;
   store.dispatch(ShowLoader())
   return axios.post(URL).then((res) => {
     store.dispatch(HideLoader())
@@ -51,6 +51,10 @@ export const VerifyEmailRequest = (email, otp) => {
         return false;
       }
     }
+  }).catch((error) => {
+    store.dispatch(HideLoader())
+    toast.error("Something went wrong!");
+    return false;
   })
 }
 
