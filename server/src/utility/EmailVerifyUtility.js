@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer'
 import { EMAIL_HOST, EMAIL_PASS, EMAIL_PORT, EMAIL_SECURITY, EMAIL_USER } from '../config/config.js'
 
-export const EmailSend = async (EmailTo, EmailText, EmailSubject) => {
+export const EmailVerifyUtility = async (EmailTo, EmailText, EmailSubject) => {
     let transport = nodemailer.createTransport({
         service: "gmail",
         host: EMAIL_HOST,
@@ -97,7 +97,6 @@ export const EmailSend = async (EmailTo, EmailText, EmailSubject) => {
                 </div>
 
                 <div class="content">
-                  <h2>If you requested to reset password in to your Task Manager Account, ${EmailTo}</h2>
                   <p>use the code below. Your OTP code is: </p>
                   <p class="strong_text"><strong>${EmailText}</strong></p>
                   <p>Never share your email, OTP, or any confidential details with anyone. We will never ask for this information. Stay safe!</p>

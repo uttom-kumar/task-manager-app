@@ -17,6 +17,7 @@ const DataSchema = new mongoose.Schema({
         required: true,
     },
     otp: { type: String, default: null },
+    isVerified: { type: Boolean, default: false },
     photo: { type: String, default: "" },
 }, { timestamps: true, versionKey: false });
 

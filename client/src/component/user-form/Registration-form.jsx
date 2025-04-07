@@ -6,8 +6,6 @@ import {RegistrationApiRequest} from "../../Api Fetch/RegistrationAPIRequest.js"
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
-  // const [imagePreview, setImagePreview] = useState("");
-  // const [image, setImage] = useState(null);
 
   // Refs for input fields
   const emailRef = useRef(null);
@@ -47,7 +45,8 @@ const RegistrationForm = () => {
         fullNameRef.current.value = "";
         mobileRef.current.value = "";
         passwordRef.current.value = "";
-        navigate("/login")
+        sessionStorage.setItem("email", email);
+        navigate("/verify-email")
       }
     }
   };

@@ -9,6 +9,7 @@ import * as TaskController from "../controllers/TaskManagerController.js"
 
 // user API
 router.post('/Register',UserController.Register)
+router.post('/VerifyEmail/:email/:otp',UserController.VerifyEmail)
 router.post('/Login',UserController.Login)
 router.post('/UpdateProfile',AuthMiddleware,UserController.UpdateProfile)
 router.get('/ReadProfile',AuthMiddleware,UserController.ReadProfile)

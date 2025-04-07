@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 const ObjectId = mongoose.Types.ObjectId;
 import bcrypt from 'bcryptjs';
 import {EmailSend} from "../utility/EmailUtility.js";
+import { EmailVerifyUtility} from "../utility/EmailVerifyUtility.js";
 
 
 
@@ -11,7 +12,13 @@ import {EmailSend} from "../utility/EmailUtility.js";
 export const RegisterService = async (req) => {
     try{
         let reqBody = req.body
+        let code = Math.floor(100000+Math.random()*900000)
+        let EmailTo = reqBody.email
+        let EmailText = `${code}`
+        let EmailSubject = "Email Verification Code"
+
         let user = await UserModel.findOne({email : reqBody.email})
+
 
         if(user){
             return {
@@ -19,13 +26,29 @@ export const RegisterService = async (req) => {
                 message : "Email already exists"
             }
         }
+        await EmailVerifyUtility (EmailTo, EmailText, EmailSubject)
 
-        await UserModel.create(reqBody)
+        await UserModel.create({
+            fullName : reqBody.fullName,
+            email : reqBody.email,
+            phone : reqBody.phone,
+            password: reqBody.password,
+            otp : code,
+        })
+
+
+        setTimeout(async () => {
+            const user = await UserModel.findOne({ email : reqBody.email });
+            if (user && !user.isVerified) {
+                await UserModel.deleteOne({ email: reqBody.email  });
+            }
+        }, 60 * 1000);
+
         return {
             status : "success",
             message : "User registration successfully!",
         }
-      
+
     }
     catch (err) {
         return {
@@ -35,6 +58,40 @@ export const RegisterService = async (req) => {
         }
     }
 }
+
+export const VerifyEmailService = async (req) => {
+    try{
+        const email = req.params.email;
+        const otpVerify = req.params.otp;
+        const user = await UserModel.findOne({email : email})
+        if(!user){
+            return {
+                status : "failed",
+                message : "User does not exist"
+            }
+        }
+        if(user.otp !== otpVerify){
+            return {
+                status : "failed",
+                message : "Invalid verification code"
+            }
+        }
+
+        await UserModel.updateOne(
+            { email: email },
+            { $set: { isVerified: true, otp: null } }
+        );
+
+    }
+    catch (err) {
+        return {
+            status : "failed",
+            message : "some thing went wrong" ,
+            error : err.toString()
+        }
+    }
+}
+
 
 export const LoginService = async (req,res) => {
     try{

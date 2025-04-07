@@ -15,6 +15,7 @@ import ForgetPassPage from "./page/Forgetpass-Page.jsx";
 import VerifyOtpPage from "./page/VerifyOtp-Page.jsx";
 import ResetPasswordPage from "./page/ResetPassword-Page.jsx";
 import Page404 from "./page/Page-404.jsx";
+import VerifyEmailPage from "./page/VerifyEmail-page.jsx";
 
 const App = () => {
   const token = getToken() || ""; // Ensure token is always a valid value
@@ -42,6 +43,7 @@ const App = () => {
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegistrationPage />} />
+            <Route path="/verify-email" element={<VerifyEmailPage />} />
             <Route path="/forget-password" element={<ForgetPassPage />} />
             <Route path="/verify-otp" element={<VerifyOtpPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />

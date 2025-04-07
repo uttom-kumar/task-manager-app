@@ -4,7 +4,7 @@ import {
     LogOutProfileService,
     ReadProfileService, RecoverEmailVerifyService, RecoverVerifyOtpService,
     RegisterService, ResetPasswordService,
-    UpdateProfileService,
+    UpdateProfileService, VerifyEmailService,
 } from "../services/UserService.js";
 
 
@@ -12,10 +12,22 @@ export const Register = async (req, res) => {
     let result = await  RegisterService(req, res)
     return res.json(result)
 }
+
+
+
+export const VerifyEmail = async (req, res) => {
+    let result = await VerifyEmailService (req)
+    return res.json(result)
+}
+
+
 export const Login = async (req, res) => {
     let result = await LoginService (req, res)
     return res.json(result)
 }
+
+
+
 export const UpdateProfile = async (req, res) => {
     let result = await UpdateProfileService (req, res)
     return res.json(result)
